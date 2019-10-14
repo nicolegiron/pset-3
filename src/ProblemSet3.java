@@ -311,7 +311,7 @@ public class ProblemSet3 {
           System.out.println("Liquid.");
         }else{
           System.out.println("Solid.");
-        }
+        }//if inside of an if to first check the scale then to check the stage 
       }else if(scale.equals("C")){
         if(temperature>=BOILINGPOINTC){
           System.out.println("Gas.");
