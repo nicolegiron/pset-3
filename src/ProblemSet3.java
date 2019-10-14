@@ -28,16 +28,16 @@ public class ProblemSet3 {
 
         // comment out or uncomment as needed
 
-        // ps.sign();          // executes Exercise 1
-        // ps.parity();        // executes Exercise 2
-        // ps.ordered();       // executes Exercise 3
-        // ps.gpa();           // executes Exercise 4
-        // ps.grade();         // executes Exercise 5
-        // ps.cards();         // executes Exercise 6
-        // ps.leapYear();      // executes Exercise 7
+        ps.sign();          // executes Exercise 1
+        ps.parity();        // executes Exercise 2
+        ps.ordered();       // executes Exercise 3
+        ps.gpa();           // executes Exercise 4
+        ps.grade();         // executes Exercise 5
+        ps.cards();         // executes Exercise 6
+        ps.leapYear();      // executes Exercise 7
         ps.state();         // executes Exercise 8
-        // ps.months();        // executes Exercise 9
-        // ps.salary();        // executes Exercise 10
+        ps.months();        // executes Exercise 9
+        ps.salary();        // executes Exercise 10
 
         in.close();
     }
@@ -49,14 +49,15 @@ public class ProblemSet3 {
      */
 
     public void sign() {
-      System.out.print("Enter an integer: ");
+      System.out.print("\nEnter an integer: ");
       int posNegInt = in.nextInt();
+      System.out.println("");
       if(posNegInt<0){
-        System.out.println("Negative.");
+        System.out.println("Negative.\n");
       }else if (posNegInt>0){
-        System.out.println("Positive.");
+        System.out.println("Positive.\n");
       }else{
-        System.out.println("Zero.");
+        System.out.println("Zero.\n");
       }
     }
 
@@ -69,10 +70,10 @@ public class ProblemSet3 {
     public void parity() {
       System.out.print("Enter an integer: ");
       int evenOddInt = in.nextInt();
-      if((evenOddInt%2)==0){
-        System.out.println("Even.");
+      if((evenOddInt%2)==0){ //if the integer does not have a remainder when divided by 2, it is even
+        System.out.println("\nEven.");
       }else{
-        System.out.println("Odd.");
+        System.out.println("\nOdd.");
       }
     }
 
@@ -90,13 +91,15 @@ public class ProblemSet3 {
       int orderedIntTwo = in.nextInt();
       System.out.print("Enter integer: ");
       int orderedIntThree = in.nextInt();
+      in.nextLine();
       System.out.println("");
       if(orderedIntOne<orderedIntTwo && orderedIntTwo<orderedIntThree){
         System.out.println("Strictly increasing.");
       }else if(orderedIntOne<=orderedIntTwo && orderedIntTwo<=orderedIntThree){
         System.out.println("Increasing.");
       }else if(orderedIntOne>orderedIntTwo && orderedIntTwo>orderedIntThree){
-        System.out.println("Strictly decreasing.");
+        System.out.println("Strictly decreasing."); /* stricktly decreasing must come first, or else the decreasing
+          else if statement would be executed first*/
       }else if(orderedIntOne>=orderedIntTwo && orderedIntTwo>=orderedIntThree){
         System.out.println("Decreasing.");
       }else{
@@ -122,7 +125,7 @@ public class ProblemSet3 {
 
       System.out.print("\nEnter a letter grade: ");
       String letterGradeEither = in.nextLine();
-      String letterGrade = letterGradeEither.toUpperCase();
+      String letterGrade = letterGradeEither.toUpperCase(); //This is so the grade is case insensitive
       System.out.println("");
       if(letterGrade.equals("A+") || letterGrade.equals("A")){
         System.out.printf("Your GPA is %.2f.\n", aGrade);
@@ -163,6 +166,7 @@ public class ProblemSet3 {
     public void grade() {
       System.out.print("\nEnter a grade: ");
       int numberGrade = in.nextInt();
+      in.nextLine();
       System.out.println("");
       final int ATOP = 100;
       final int ABOTTOM = 90;
@@ -198,7 +202,7 @@ public class ProblemSet3 {
      */
 
     public void cards() {
-      System.out.print("\nEnter a card: ");
+      System.out.print("Enter a card: ");
       String card = in.nextLine();
       String rank = card.substring(0,1);
       String suit = card.substring(1,2);
@@ -212,11 +216,11 @@ public class ProblemSet3 {
           validRank = false;
         }else if(!suit.equals("C")&&!suit.equals("D")&&!suit.equals("H")&&!suit.equals("S")){
           validSuit = false;
-        }
+        } //Checks if there is an invalid rank or suit
 
-      if(validRank==false){
+      if(validRank==false){ //first checks if there is a valid rank and if not it states so.
         System.out.println("That's not a valid rank.\n");
-      }else if(validSuit==false){
+      }else if(validSuit==false){ //Sets validSuit equal to false so later the suit if-else statement will not run
         System.out.print("");
       }else if(rank.equals("2")){
         System.out.print("Two of ");
@@ -293,13 +297,31 @@ public class ProblemSet3 {
       final double FREEZINGPOINTC = 0;
       final double BOILINGPOINTC = 100;
 
-      System.out.print("\nEnter a temperature: ");
+      System.out.print("Enter a temperature: ");
       int temperature = in.nextInt();
-      System.out.print("\nEnter a scale: ");
-      String sclae = in.nextLine();
+      in.nextLine();
+      System.out.print("Enter a scale: ");
+      String scale = in.nextLine();
+      System.out.println("");
 
       if(scale.equals("F")){
-        
+        if(temperature>=BOILINGPOINTF){
+          System.out.println("Gas.");
+        }else if(temperature<=BOILINGPOINTF && temperature>=FREEZINGPOINTF){
+          System.out.println("Liquid.");
+        }else{
+          System.out.println("Solid.");
+        }
+      }else if(scale.equals("C")){
+        if(temperature>=BOILINGPOINTC){
+          System.out.println("Gas.");
+        }else if(temperature<=BOILINGPOINTC && temperature>=FREEZINGPOINTC){
+          System.out.println("Liquid.");
+        }else{
+          System.out.println("Solid.");
+        }
+      }else{
+        System.out.println("That's not a valid scale.");
       }
     }
 
@@ -310,7 +332,46 @@ public class ProblemSet3 {
      */
 
     public void months() {
+      System.out.print("\nEnter a month: ");
+      String month = in.nextLine();
+      System.out.println("");
+      String monthLowerCase = month.toLowerCase();
+      int monthLength = monthLowerCase.length();
 
+      if(monthLength==3){
+        monthLowerCase = monthLowerCase.substring(0,3);
+      }else if(monthLength==4){
+        monthLowerCase = monthLowerCase.substring(0,4);
+      } /*this if else is needed to split the month accordingly depending on the size of the month for wether the month
+        is shortened into 3 or 4 letters*/
+
+      if(monthLowerCase.equals("january")||monthLowerCase.equals("jan")||monthLowerCase.equals("janu")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("february")||monthLowerCase.equals("feb")||monthLowerCase.equals("febr")){
+        System.out.println("28 or 29 Days.");
+      }else if(monthLowerCase.equals("march")||monthLowerCase.equals("mar")||monthLowerCase.equals("marc")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("april")||monthLowerCase.equals("apr")||monthLowerCase.equals("apri")){
+        System.out.println("30 Days.");
+      }else if(monthLowerCase.equals("may")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("june")||monthLowerCase.equals("jun")){
+        System.out.println("30 Days.");
+      }else if(monthLowerCase.equals("july")||monthLowerCase.equals("jul")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("august")||monthLowerCase.equals("aug")||monthLowerCase.equals("augu")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("september")||monthLowerCase.equals("sep")||monthLowerCase.equals("sept")){
+        System.out.println("30 Days.");
+      }else if(monthLowerCase.equals("october")||monthLowerCase.equals("oct")||monthLowerCase.equals("octo")){
+        System.out.println("31 Days.");
+      }else if(monthLowerCase.equals("november")||monthLowerCase.equals("nov")||monthLowerCase.equals("novem")){
+        System.out.println("30 Days.");
+      }else if(monthLowerCase.equals("december")||monthLowerCase.equals("dec")||monthLowerCase.equals("dece")){
+        System.out.println("31 Days.");
+      }else{
+        System.out.println("That's not a valid month.");
+      }
     }
 
     /*
@@ -320,6 +381,25 @@ public class ProblemSet3 {
      */
 
     public void salary() {
+      System.out.print("\nWage: ");
+      double wage = in.nextDouble();
+      System.out.print("Hours: ");
+      double hours = in.nextDouble();
+      final double moneyMade = wage*hours;
+      final double overTime = wage*1.5;
 
+
+
+      if(wage<0){
+        System.out.println("Your wage must be greater than or equal to $0.00/hour.\n");
+      }else if(hours<0.0){
+        System.out.println("Your hours must be greater than or equal to 0.0.\n");
+      }else if(hours>0.0 && hours<40.0){
+        System.out.printf("You'll make $%.2f this week.\n", moneyMade);
+      }else if(hours>40.0){
+        double moneyRegularTime = wage*40;
+        double moneyOverTime = moneyRegularTime+(hours-40)*overTime;
+        System.out.printf("\nYou'll make $%,.2f this week.\n", moneyOverTime);
+      }
     }
 }
